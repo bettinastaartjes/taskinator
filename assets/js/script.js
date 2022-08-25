@@ -1,3 +1,26 @@
+//Assign the button element object representation to a variable in the file.
+// The name of the button element is 'buttonEl'. The use of camelcase marks this as a Javascript variable; the El suffix identifies this as a DOM element.
+//2) first we're adding the DOM object reference to the task list at the top of the page, following the task item DOM reference.
+
+var buttonEl = document.querySelector("#save-task");
+var tasksToDoEl = document.querySelector("#tasks-to-do");
+
+//4) Below, we're creating a new task item, styling the new task item, adding the text, and appending the element to the task list. Now we're adding a createTaskHandler() function to dynamically create the task item. We have to place the function expression before the event listener, otherwise we'd get an error that createTaskHandler() isn't defined because we'd be calling the function before defining it.
+
+var createTaskHandler = function() {
+  var listItemEl= document.createElement("li");
+  listItemEl.className = "task-item";
+  listItemEl.textContent= "This is a new task.";
+  tasksToDoEl.appendChild(listeItemEl);
+};
+
+// This is the event listener. Changing the text of the new task item dynamically, using the textContent property we used before to note, "this is a new task." 5) We're changing buttonEl.addEventListener("click", function(){ to new code, which uses createTaskHandler as the callback function. 
+buttonEl.addEventListener("click", createTaskHandler);
+
+
+
+/*
+//
 var taskIdCounter = 0;
 
 var formEl = document.querySelector("#task-form");
@@ -279,4 +302,4 @@ pageContentEl.addEventListener("click", taskButtonHandler);
 // for changing the status
 pageContentEl.addEventListener("change", taskStatusChangeHandler);
 
-loadTasks();
+loadTasks();*/
