@@ -13,27 +13,38 @@
 
   <!--This is how we create the box for the box at the top with the header-->
   <header>
+
     <!--1. Here we created an h1 element called Taskinator with a class attribute value of page-title-->
     <h1 class="page-title">Taskinator</h1>
+
     <!--2. add text element-->
     <p>Click the button below to add a new task!</p>
+
+  
+    <!--Even though we enclosed the button el in form and div els, the header still looks the same but set up for us to add more content. Let's add input to capture our task's name. The code below is to be added after the opening form tag (above)-->
     <form id="task-form">
       <div class="form-group">
-        <input type="text" name="task-name" placeholder="Enter Task Name" />
-      </div>
+      <input type = "text" name="task-name" placeholder="Enter Task Name"/>
+    </div>
+
+      <!--The select element tells the browser we're about to create a dropdown list, and option elements between teh select tags create the choices for that dropdown. The name attribute helps identify the form input, which we'll use to select the element with the queryselector method in java. Value attribute should accompany every option bc this value will be used in teh java later to read the option we've picked. The disabled property before the selected property makes the pick a task type option appear first and prevent the user from selecting it.The options print, web, and mobile are a personal project. We're adding select-dropdown class to select element. -->
       <div class="form-group">
         <select name="task-type" class="select-dropdown">
-          <option value="" selected disabled>Pick a task type</option>
+          <option value="" disabled selected>Pick a task type</option>
           <option value="Print">Print</option>
           <option value="Web">Web</option>
           <option value="Mobile">Mobile</option>
         </select>
-      </div>
-      <div class="form-group">
-        <!--3. Here we added a button element called "Add Task" with a class of btn. 4. If we want to add more buttons on the page, we distinguish the button by using an id attribute and assign it an id name. We try this below with id=save-task.-->
-        <button class="btn" id="save-task" type="submit">Add Task</button>
-      </div>
+      </div> 
+
+        <!--3. Here we added a button element called "Add Task" with a class of btn. 4. If we want to add more buttons on the page, we distinguish the button by using an id attribute and assign it an id name. We try this below with id=save-task -- this was here before: <button class="btn" id="save-task" type="submit">Add Task</button-->
+      
+        <div class="form group">
+          <button class="btn" id="save-task" type="submit">Add Task</button>
+        </div>
     </form>
+
+
   </header>
 
   <!--This element is what will contain the task list. Here we're adding the main element and giving it a class attribute of page content.-->
