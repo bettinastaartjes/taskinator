@@ -7,39 +7,53 @@ var tasksToDoEl = document.querySelector("#tasks-to-do");
 
 //4) Below, we're creating a new task item, styling the new task item, adding the text, and appending the element to the task list. Now we're adding a createTaskHandler() function to dynamically create the task item. We have to place the function expression before the event listener, otherwise we'd get an error that createTaskHandler() isn't defined because we'd be calling the function before defining it.
 
-var createTaskHandler = function() {
+var taskFormHandler = function (event) {
+
   //this prevents the browser from refreshing when we click the button
   event.preventDefault();
+  
   //letting event handler retrieve the forms values upon submission, below is the code that we use to get the task name's value, below is a variable declaration for taskNameInput
   var taskNameInput = document.querySelector("input[name='task-name']").value;
   var taskTypeInput = document.querySelector("select[name='task-type']").value;
 
+  // package up data as an object
+  var taskDataObj = {
+    name: taskNameInput,
+    type: taskTypeInput
+  };
+  
+  //send it asn an argument to ccreateTaskEl
+  createTaskEl(taskDataObj);
+};
+
+var createTaskEl = function (taskDataObj) {
   // create list item
-var listItemEl = document.createElement("li");
-listItemEl.className = "task-item";
-
-// create div to hold task info and add to list item
-var taskInfoEl = document.createElement("div");
-// give it a class name
-taskInfoEl.className = "task-info";
-// add HTML content to div
-taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskNameInput + "</h3><span class='task-type'>" + taskTypeInput + "</span>";
-
-listItemEl.appendChild(taskInfoEl);
-
-// add entire list item to list
-tasksToDoEl.appendChild(listItemEl);
-
-  var listItemEl= document.createElement("li");
+  var listItemEl = document.createElement("li");
   listItemEl.className = "task-item";
-  //whatever we enter into the form appears as a task in the list (below)
-  listItemEl.textContent= taskNameInput;
+
+  // create div to hold task info and add to list item
+  var taskInfoEl = document.createElement("div");
+  // give it a class name
+  taskInfoEl.className = "task-info";
+  // add HTML content to div
+  taskInfoEl.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
+  listItemEl.appendChild(taskInfoEl);
+
+  // add entire list item to list
   tasksToDoEl.appendChild(listItemEl);
 };
 
 // This is the event listener. Changing the text of the new task item dynamically, using the textContent property we used before to note, "this is a new task." 5) We're changing buttonEl.addEventListener("click", function(){ to new code, which uses createTaskHandler as the callback function. --buttonEl.addEventListener("click", createTaskHandler)--- WE REMOVED THIS AND REPLACED BELOW;
+formEl.addEventListener("submit", taskFormHandler);
+  
 
-formEl.addEventListener("submit", createTaskHandler);
+var listItemEl= document.createElement("li");
+listItemEl.className = "task-item";
+//whatever we enter into the form appears as a task in the list (below)
+listItemEl.textContent= taskNameInput;
+tasksToDoEl.appendChild(listItemEl);
+
+
 
 
 
